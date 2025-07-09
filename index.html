@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Untitled</title>
+  
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mastering 1000 Vocabulary Words - Memory Game</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            color: white;
+        }
+
+        .main-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .part-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #f0f0f0;
+        }
+
+        .header-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            margin-bottom: 30px;
+        }
+
+        .game-container {
+            max-width: 1000px;
+            width: 100%;
+            margin-bottom: 30px;
+        }
+
+        .game-stats {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255,255,255,0.1);
+            padding: 15px 25px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            backdrop-filter: blur(10px);
+            color: white;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .reset-btn {
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .reset-btn:hover {
+            background: #ff5252;
+            transform: translateY(-2px);
+        }
+
+        .memory-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            padding: 20px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .memory-card {
+            aspect-ratio: 3/2;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+
+        .memory-card.flipped .card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            font-weight: bold;
+        }
+
+        .card-front {
+            background: linear-gradient(135deg, #ffeaa7, #fdcb6e);
+            color: #2d3436;
+            font-size: 3rem;
+        }
+
+        .card-back {
+            color: white;
+            transform: rotateY(180deg);
+            padding: 15px;
+            flex-direction: column;
+        }
+
+        .word-card {
+            background: linear-gradient(135deg, #74b9ff, #0984e3);
+        }
+
+        .meaning-card {
+            background: linear-gradient(135deg, #fd79a8, #e84393);
+        }
+
+        .card-word {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .card-meaning {
+            font-size: 0.9rem;
+            line-height: 1.3;
+            text-align: center;
+        }
+
+        .memory-card.matched {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        .memory-card.matched .word-card {
+            background: linear-gradient(135deg, #00b894, #00a085);
+        }
+
+        .memory-card.matched .meaning-card {
+            background: linear-gradient(135deg, #00b894, #00a085);
+        }
+
+        .footer {
+            margin-top: auto;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+            margin-bottom: 15px;
+        }
+
+        .copy-btn {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .copy-btn:hover {
+            background: #45a049;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        .copy-btn:active {
+            transform: translateY(0);
+        }
+
+        .copy-success {
+            background: #2196F3 !important;
+        }
+
+        .win-message {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, #00b894, #00a085);
+            color: white;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            z-index: 1000;
+            display: none;
+        }
+
+        .win-message h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .win-message p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1 class="main-title">MASTERING 1000 VOCABULARY WORDS</h1>
+        <h2 class="part-title">PART 2</h2>
+        <img src="https://raw.githubusercontent.com/mathnology/VOCABULARY-PART-2/refs/heads/main/MASTERING%201000%20VOCABULARY%20WORDS%20PART%202_001.png" alt="Vocabulary Part 2" class="header-image">
+    </div>
+
+    <div class="game-container">
+        <div class="game-stats">
+            <div class="stat">
+                <span class="stat-value" id="moves">0</span>
+                <span class="stat-label">Moves</span>
+            </div>
+            <div class="stat">
+                <span class="stat-value" id="matches">0/10</span>
+                <span class="stat-label">Matches</span>
+            </div>
+            <div class="stat">
+                <span class="stat-value" id="timer">00:00</span>
+                <span class="stat-label">Time</span>
+            </div>
+            <button class="reset-btn" onclick="resetGame()">New Game</button>
+        </div>
+
+        <div class="memory-grid" id="gameGrid"></div>
+    </div>
+
+    <div class="win-message" id="winMessage">
+        <h2>🎉 Congratulations!</h2>
+        <p>You've mastered all the vocabulary words!</p>
+        <button class="reset-btn" onclick="resetGame(); document.getElementById('winMessage').style.display='none';">Play Again</button>
+    </div>
+
+    <div class="footer">
+        2025 Mathnology
+    </div>
+
+    <script>
+        const vocabularyPairs = [
+            { word: "inter", meaning: "put into the earth or in a grave; bury." },
+            { word: "mitigate", meaning: "make less severe; lessen; soften; relieve." },
+            { word: "novice", meaning: "One who is new to a field or activity; beginner." },
+            { word: "original", meaning: "1. a work created firsthand and from which copies are made. 2. belonging to the beginning; first; earliest." },
+            { word: "rarity", meaning: "something uncommon, infrequent, or rare." },
+            { word: "resume", meaning: "begin again." },
+            { word: "shrink", meaning: "draw back; recoil." },
+            { word: "sober", meaning: "1. not drunk. 2. serious; free from excitement or exaggeration." },
+            { word: "suffice", meaning: "be enough, adequate, or sufficient." },
+            { word: "vacant", meaning: "empty; unoccupied; not being use." }
+        ];
+
+        let gameCards = [];
+        let flippedCards = [];
+        let matchedPairs = 0;
+        let moves = 0;
+        let gameTimer = 0;
+        let timerInterval;
+        let gameStarted = false;
+
+        function createGameCards() {
+            gameCards = [];
+
+            vocabularyPairs.forEach((pair, index) => {
+                gameCards.push({ id: `word-${index}`, type: 'word', content: pair.word, pairId: index });
+                gameCards.push({ id: `meaning-${index}`, type: 'meaning', content: pair.meaning, pairId: index });
+            });
+
+            for (let i = gameCards.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [gameCards[i], gameCards[j]] = [gameCards[j], gameCards[i]];
+            }
+        }
+
+        function renderCards() {
+            const grid = document.getElementById('gameGrid');
+            grid.innerHTML = '';
+
+            gameCards.forEach(card => {
+                const cardElement = document.createElement('div');
+                cardElement.className = 'memory-card';
+                cardElement.dataset.cardId = card.id;
+                cardElement.dataset.pairId = card.pairId;
+
+                const cardBackClass = card.type === 'word' ? 'card-back word-card' : 'card-back meaning-card';
+
+                cardElement.innerHTML = `
+                    <div class="card-inner">
+                        <div class="card-front">💡</div>
+                        <div class="${cardBackClass}">
+                            ${card.type === 'word' ? 
+                                `<div class="card-word">${card.content}</div>` :
+                                `<div class="card-meaning">${card.content}</div>`}
+                        </div>
+                    </div>
+                `;
+                
+                cardElement.addEventListener('click', () => flipCard(cardElement));
+                grid.appendChild(cardElement);
+            });
+        }
+
+        function flipCard(cardElement) {
+            if (!gameStarted) {
+                startTimer();
+                gameStarted = true;
+            }
+
+            if (cardElement.classList.contains('flipped') || cardElement.classList.contains('matched') || flippedCards.length >= 2) {
+                return;
+            }
+
+            cardElement.classList.add('flipped');
+            flippedCards.push(cardElement);
+
+            if (flippedCards.length === 2) {
+                moves++;
+                document.getElementById('moves').textContent = moves;
+
+                setTimeout(() => {
+                    checkMatch();
+                }, 1000);
+            }
+        }
+
+        function checkMatch() {
+            const [card1, card2] = flippedCards;
+            const pairId1 = card1.dataset.pairId;
+            const pairId2 = card2.dataset.pairId;
+
+            if (pairId1 === pairId2) {
+                card1.classList.add('matched');
+                card2.classList.add('matched');
+                matchedPairs++;
+
+                document.getElementById('matches').textContent = `${matchedPairs}/10`;
+
+                if (matchedPairs === 10) {
+                    setTimeout(() => {
+                        clearInterval(timerInterval);
+                        document.getElementById('winMessage').style.display = 'block';
+                    }, 500);
+                }
+            } else {
+                card1.classList.remove('flipped');
+                card2.classList.remove('flipped');
+            }
+
+            flippedCards = [];
+        }
+
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                gameTimer++;
+                const minutes = Math.floor(gameTimer / 60);
+                const seconds = gameTimer % 60;
+                document.getElementById('timer').textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            }, 1000);
+        }
+
+        function resetGame() {
+            clearInterval(timerInterval);
+            gameTimer = 0;
+            moves = 0;
+            matchedPairs = 0;
+            flippedCards = [];
+            gameStarted = false;
+
+            document.getElementById('timer').textContent = '00:00';
+            document.getElementById('moves').textContent = '0';
+            document.getElementById('matches').textContent = '0/10';
+
+            createGameCards();
+            renderCards();
+        }
+
+        createGameCards();
+        renderCards();
+    </script>
+</body>
+</html>
+<!-- partial -->
+  
+</body>
+</html>
