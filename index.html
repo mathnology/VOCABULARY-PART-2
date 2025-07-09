@@ -106,21 +106,22 @@
             transform: translateY(-2px);
         }
 
-        .memory-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            padding: 20px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-        }
+.memory-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Menyesuaikan untuk banyak kolom otomatis */
+    gap: 15px;
+    padding: 20px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+}
 
-        .memory-card {
-            aspect-ratio: 3/2;
-            perspective: 1000px;
-            cursor: pointer;
-        }
+/* Menambahkan media query untuk tampilan mobile */
+@media (max-width: 768px) {
+    .memory-grid {
+        grid-template-columns: repeat(2, 1fr); /* Menampilkan 2 kolom per baris */
+    }
+}
 
         .card-inner {
             position: relative;
