@@ -8,8 +8,7 @@
 </head>
 <body>
 <!-- partial:index.partial.html -->
-<html lang="en">
-<head>
+<html lang="en"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mastering 1000 Vocabulary Words - Memory Game</title>
@@ -106,22 +105,21 @@
             transform: translateY(-2px);
         }
 
-.memory-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Menyesuaikan untuk banyak kolom otomatis */
-    gap: 15px;
-    padding: 20px;
-    background: rgba(255,255,255,0.1);
-    border-radius: 20px;
-    backdrop-filter: blur(10px);
-}
+        .memory-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            padding: 20px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
 
-/* Menambahkan media query untuk tampilan mobile */
-@media (max-width: 768px) {
-    .memory-grid {
-        grid-template-columns: repeat(2, 1fr); /* Menampilkan 2 kolom per baris */
-    }
-}
+        .memory-card {
+            aspect-ratio: 3/2;
+            perspective: 1000px;
+            cursor: pointer;
+        }
 
         .card-inner {
             position: relative;
@@ -257,6 +255,51 @@
             margin-bottom: 20px;
         }
 
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 1.8rem;
+            }
+            
+            .part-title {
+                font-size: 1.2rem;
+            }
+            
+            .memory-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 10px;
+                padding: 15px;
+            }
+            
+            .card-word {
+                font-size: 1rem;
+            }
+            
+            .card-meaning {
+                font-size: 0.8rem;
+            }
+            
+            .card-front {
+                font-size: 2rem;
+            }
+            
+            .game-stats {
+                padding: 10px 15px;
+            }
+            
+            .stat-value {
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .memory-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .main-title {
+                font-size: 1.5rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -283,7 +326,147 @@
             <button class="reset-btn" onclick="resetGame()">New Game</button>
         </div>
 
-        <div class="memory-grid" id="gameGrid"></div>
+        <div class="memory-grid" id="gameGrid"><div class="memory-card" data-card-id="word-1" data-pair-id="1">
+                    <div class="card-inner">
+                        <div class="card-front">💡</div>
+                        <div class="card-back word-card">
+                            <div class="card-word">complicated</div>
+                        </div>
+                    </div>
+                </div><div class="memory-card" data-card-id="meaning-0" data-pair-id="0">
+                    <div class="card-inner">
+                        <div class="card-front">💡</div>
+                        <div class="card-back meaning-card">
+                            <div class="card-meaning">person who is not a member of the armed forces, or police, or fire-fighting forces.</div>
+                        </div>
+                    </div>
+                </div><div class="memory-card" data-card-id="meaning-1" data-pair-id="1">
+                    <div class="card-inner">
+                        <div class="card-front">💡</div>
+                        <div class="card-back meaning-card">
+                            <div class="card-meaning">not simple or easy; intricate.</div>
+                        </div>
+                    </div>
+                </div><div class="memory-card" data-card-id="meaning-8" data-pair-id="8">
+                    <div class="card-inner">
+                        <div class="card-front">💡</div>
+                        <div class="card-back meaning-card">
+                            <div class="card-meaning">of or relating to an enemy or enemies; unfriendly.</div>
+                        </div>
+                    </div>
+                </div><div class="memory-card" data-card-id="word-8" data-pair-id="8">
+                    <div class="card-inner">
+                        <div class="card-front">💡</div>
+                        <div class="card-back word-card">
+                            <div class="card-word">hostile</div>
+                        </div>
+                    </div>
+                </div><div class="memory-card" data-card-id="meaning-3" data-pair-id="3">
+                    <div class="card-inner">
+                        <div class="card-front">💡</div>
+                        <div class="card-back meaning-card">
+                            <div class="card-meaning">state or prove the truth of; substantiate.</div>
+                        </div>
+                    </div>
+                </div><div class="memory-card" data-card-id="meaning-4" data-pair-id="4">
+                    <div class="card-inner">
+                        <div class="card-front">💡</div>
+                        <div class="card-back meaning-card">
+                            <div class="card-meaning">turn aside, get off the main subject in speaking or writing.</div>
+                        </div>
+                    </div>
+                </div><div class="memory-card" data-card-id="meaning-2" data-pair-id="2">
+                    <div class="card-inner">
+                        <div class="card-front">💡</div>
+                        <div class="card-back meaning-card">
+                            <div class="card-meaning">agree; be of the same opinion.</div>
+                        </div>
+                    </div>
+                </div><div class="memory-card" data-card-id="meaning-6" data-pair-id="6">
+                    <div class="card-inner">
+                        <div class="card-front">💡</div>
+                        <div class="card-back meaning-card">
+                            <div class="card-meaning">plentiful; abundant (galore always follows the word it modifies).</div>
+                        </div>
+                    </div>
+                </div><div class="memory-card" data-card-id="word-4" data-pair-id="4">
+                    <div class="card-inner">
+                        <div class="card-front">💡</div>
+                        <div class="card-back word-card">
+                            <div class="card-word">digress</div>
+                        </div>
+                    </div>
+                </div><div class="memory-card" data-card-id="word-7" data-pair-id="7">
+                    <div class="card-inner">
+                        <div class="card-front">💡</div>
+                        <div class="card-back word-card">
+                            <div class="card-word">genuine</div>
+                        </div>
+                    </div>
+                </div><div class="memory-card" data-card-id="meaning-7" data-pair-id="7">
+                    <div class="card-inner">
+                        <div class="card-front">💡</div>
+                        <div class="card-back meaning-card">
+                            <div class="card-meaning">actually being what it is claimed or seems to be; true; real; authentic.</div>
+                        </div>
+                    </div>
+                </div><div class="memory-card" data-card-id="meaning-5" data-pair-id="5">
+                    <div class="card-inner">
+                        <div class="card-front">💡</div>
+                        <div class="card-back meaning-card">
+                            <div class="card-meaning">easily broken; breakable; weak; frail.</div>
+                        </div>
+                    </div>
+                </div><div class="memory-card" data-card-id="word-9" data-pair-id="9">
+                    <div class="card-inner">
+                        <div class="card-front">💡</div>
+                        <div class="card-back word-card">
+                            <div class="card-word">impatient</div>
+                        </div>
+                    </div>
+                </div><div class="memory-card" data-card-id="word-2" data-pair-id="2">
+                    <div class="card-inner">
+                        <div class="card-front">💡</div>
+                        <div class="card-back word-card">
+                            <div class="card-word">concur</div>
+                        </div>
+                    </div>
+                </div><div class="memory-card" data-card-id="word-3" data-pair-id="3">
+                    <div class="card-inner">
+                        <div class="card-front">💡</div>
+                        <div class="card-back word-card">
+                            <div class="card-word">confirm</div>
+                        </div>
+                    </div>
+                </div><div class="memory-card" data-card-id="word-6" data-pair-id="6">
+                    <div class="card-inner">
+                        <div class="card-front">💡</div>
+                        <div class="card-back word-card">
+                            <div class="card-word">galore</div>
+                        </div>
+                    </div>
+                </div><div class="memory-card" data-card-id="word-5" data-pair-id="5">
+                    <div class="card-inner">
+                        <div class="card-front">💡</div>
+                        <div class="card-back word-card">
+                            <div class="card-word">fragile</div>
+                        </div>
+                    </div>
+                </div><div class="memory-card" data-card-id="word-0" data-pair-id="0">
+                    <div class="card-inner">
+                        <div class="card-front">💡</div>
+                        <div class="card-back word-card">
+                            <div class="card-word">civilian</div>
+                        </div>
+                    </div>
+                </div><div class="memory-card" data-card-id="meaning-9" data-pair-id="9">
+                    <div class="card-inner">
+                        <div class="card-front">💡</div>
+                        <div class="card-back meaning-card">
+                            <div class="card-meaning">not patient; not willing to bear delay; restless; anxious.</div>
+                        </div>
+                    </div>
+                </div></div>
     </div>
 
     <div class="win-message" id="winMessage">
@@ -296,18 +479,20 @@
         2025 Mathnology
     </div>
 
+    
+
     <script>
         const vocabularyPairs = [
-            { word: "inter", meaning: "put into the earth or in a grave; bury." },
-            { word: "mitigate", meaning: "make less severe; lessen; soften; relieve." },
-            { word: "novice", meaning: "One who is new to a field or activity; beginner." },
-            { word: "original", meaning: "1. a work created firsthand and from which copies are made. 2. belonging to the beginning; first; earliest." },
-            { word: "rarity", meaning: "something uncommon, infrequent, or rare." },
-            { word: "resume", meaning: "begin again." },
-            { word: "shrink", meaning: "draw back; recoil." },
-            { word: "sober", meaning: "1. not drunk. 2. serious; free from excitement or exaggeration." },
-            { word: "suffice", meaning: "be enough, adequate, or sufficient." },
-            { word: "vacant", meaning: "empty; unoccupied; not being use." }
+    { word: "inter", meaning: "put into the earth or in a grave; bury." },
+    { word: "mitigate", meaning: "make less severe; lessen; soften; relieve." },
+    { word: "novice", meaning: "One who is new to a field or activity; beginner." },
+    { word: "original", meaning: "1. a work created firsthand and from which copies are made. 2. belonging to the beginning; first; earliest." },
+    { word: "rarity", meaning: "something uncommon, infrequent, or rare." },
+    { word: "resume", meaning: "begin again." },
+    { word: "shrink", meaning: "draw back; recoil." },
+    { word: "sober", meaning: "1. not drunk. 2. serious; free from excitement or exaggeration." },
+    { word: "suffice", meaning: "be enough, adequate, or sufficient." },
+    { word: "vacant", meaning: "empty; unoccupied; not being used." }
         ];
 
         let gameCards = [];
@@ -320,12 +505,28 @@
 
         function createGameCards() {
             gameCards = [];
-
+            
+            // Create word cards
             vocabularyPairs.forEach((pair, index) => {
-                gameCards.push({ id: `word-${index}`, type: 'word', content: pair.word, pairId: index });
-                gameCards.push({ id: `meaning-${index}`, type: 'meaning', content: pair.meaning, pairId: index });
+                gameCards.push({
+                    id: `word-${index}`,
+                    type: 'word',
+                    content: pair.word,
+                    pairId: index
+                });
             });
-
+            
+            // Create meaning cards
+            vocabularyPairs.forEach((pair, index) => {
+                gameCards.push({
+                    id: `meaning-${index}`,
+                    type: 'meaning',
+                    content: pair.meaning,
+                    pairId: index
+                });
+            });
+            
+            // Shuffle cards
             for (let i = gameCards.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
                 [gameCards[i], gameCards[j]] = [gameCards[j], gameCards[i]];
@@ -335,22 +536,23 @@
         function renderCards() {
             const grid = document.getElementById('gameGrid');
             grid.innerHTML = '';
-
+            
             gameCards.forEach(card => {
                 const cardElement = document.createElement('div');
                 cardElement.className = 'memory-card';
                 cardElement.dataset.cardId = card.id;
                 cardElement.dataset.pairId = card.pairId;
-
+                
                 const cardBackClass = card.type === 'word' ? 'card-back word-card' : 'card-back meaning-card';
-
+                
                 cardElement.innerHTML = `
                     <div class="card-inner">
                         <div class="card-front">💡</div>
                         <div class="${cardBackClass}">
                             ${card.type === 'word' ? 
                                 `<div class="card-word">${card.content}</div>` :
-                                `<div class="card-meaning">${card.content}</div>`}
+                                `<div class="card-meaning">${card.content}</div>`
+                            }
                         </div>
                     </div>
                 `;
@@ -365,18 +567,20 @@
                 startTimer();
                 gameStarted = true;
             }
-
-            if (cardElement.classList.contains('flipped') || cardElement.classList.contains('matched') || flippedCards.length >= 2) {
+            
+            if (cardElement.classList.contains('flipped') || 
+                cardElement.classList.contains('matched') || 
+                flippedCards.length >= 2) {
                 return;
             }
-
+            
             cardElement.classList.add('flipped');
             flippedCards.push(cardElement);
-
+            
             if (flippedCards.length === 2) {
                 moves++;
                 document.getElementById('moves').textContent = moves;
-
+                
                 setTimeout(() => {
                     checkMatch();
                 }, 1000);
@@ -387,14 +591,15 @@
             const [card1, card2] = flippedCards;
             const pairId1 = card1.dataset.pairId;
             const pairId2 = card2.dataset.pairId;
-
+            
             if (pairId1 === pairId2) {
+                // Match found
                 card1.classList.add('matched');
                 card2.classList.add('matched');
                 matchedPairs++;
-
+                
                 document.getElementById('matches').textContent = `${matchedPairs}/10`;
-
+                
                 if (matchedPairs === 10) {
                     setTimeout(() => {
                         clearInterval(timerInterval);
@@ -402,10 +607,11 @@
                     }, 500);
                 }
             } else {
+                // No match
                 card1.classList.remove('flipped');
                 card2.classList.remove('flipped');
             }
-
+            
             flippedCards = [];
         }
 
@@ -414,7 +620,8 @@
                 gameTimer++;
                 const minutes = Math.floor(gameTimer / 60);
                 const seconds = gameTimer % 60;
-                document.getElementById('timer').textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                document.getElementById('timer').textContent = 
+                    `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
             }, 1000);
         }
 
@@ -425,20 +632,58 @@
             matchedPairs = 0;
             flippedCards = [];
             gameStarted = false;
-
+            
             document.getElementById('timer').textContent = '00:00';
             document.getElementById('moves').textContent = '0';
             document.getElementById('matches').textContent = '0/10';
-
+            
             createGameCards();
             renderCards();
         }
 
+        function copyHTML() {
+            const htmlContent = document.documentElement.outerHTML;
+            
+            navigator.clipboard.writeText(htmlContent).then(() => {
+                const btn = document.getElementById('copyBtn');
+                const originalText = btn.innerHTML;
+                
+                btn.innerHTML = '✅ Copied!';
+                btn.classList.add('copy-success');
+                
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    btn.classList.remove('copy-success');
+                }, 2000);
+            }).catch(err => {
+                // Fallback for older browsers
+                const textArea = document.createElement('textarea');
+                textArea.value = htmlContent;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                
+                const btn = document.getElementById('copyBtn');
+                const originalText = btn.innerHTML;
+                
+                btn.innerHTML = '✅ Copied!';
+                btn.classList.add('copy-success');
+                
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    btn.classList.remove('copy-success');
+                }, 2000);
+            });
+        }
+
+        // Initialize game
         createGameCards();
         renderCards();
     </script>
-</body>
-</html>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'95c4689316e05542',t:'MTc1MjAyODMyMi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><iframe height="1" width="1" style="position: absolute; top: 0px; left: 0px; border: none; visibility: hidden;"></iframe>
+
+</body></html>
 <!-- partial -->
   
 </body>
